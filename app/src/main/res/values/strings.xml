@@ -2,8 +2,9 @@
     <string name="app_name">Zakat Fitrah</string>
     <string name="zakat_intro">Sambutlah bulan suci Ramadhan dengan langkah awal yang penuh berkah, dengan membayar zakat fitrah. Hitunglah sekarang!</string>
     <string name="jumlah_orang">Jumlah orang</string>
-    <string name="nominal_pembayaran">Nominal pembayaran</string>
     <string name="uang">Uang</string>
     <string name="beras">Beras</string>
     <string name="hitung">Hitung</string>
+    <string name="rumus">Total Zakat Yang Harus Dibayarkan: %1$.2f</string>
+    <string name="input_invalid">Tidak boleh kosong.</string>
 </resources>

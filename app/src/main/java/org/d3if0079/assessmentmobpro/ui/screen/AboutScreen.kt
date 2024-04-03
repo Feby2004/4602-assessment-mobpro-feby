@@ -1,4 +1,4 @@
-package org.d3if0079.assessmentmobpro.navigation
+package org.d3if0079.assessmentmobpro.ui.screen
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.padding

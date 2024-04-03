@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zakat Fitrah</string>
+    <string name="zakat_intro">Welcome the holy month of Ramadan with a blessed first step, by paying zakat fitrah. Make it count now!</string>
+    <string name="jumlah_orang">Number of people</string>
+    <string name="uang">Money</string>
+    <string name="beras">Rice</string>
+    <string name="hitung">Count</string>
+    <string name="rumus">Total Zakat to be Paid: %1$.2f</string>
+    <string name="input_invalid">Can not be empty.</string>
+    <string name="tentang_aplikasi">About Application</string>
+    <string name="copyright">Zakat fitrah is an Android application designed to help calculate the amount of zakat that must be paid, ensuring that someone does not forget to pay zakat during the holy month of Ramadan. This application is intended for all Muslims who are carrying out their worship in the holy month of Ramadan.  Copyright @ 2024 Feby Irmayana. All rights reserved.</string>
+    <string name="kembali">Return</string>
+    <string name="bagikan">Share</string>
+    <string name="bagikan_uang_template">Amount of money to be paid: %1$s</string>
+    <string name="bagikan_beras_template">Amount of rice to be paid: %1$s</string>
+</resources>

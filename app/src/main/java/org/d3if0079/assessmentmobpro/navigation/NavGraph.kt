@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import org.d3if0079.assessmentmobpro.ui.screen.AboutScreen
 import org.d3if0079.assessmentmobpro.ui.screen.MainScreen
 
 @Composable

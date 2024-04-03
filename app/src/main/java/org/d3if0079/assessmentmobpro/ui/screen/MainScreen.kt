@@ -34,7 +34,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -98,7 +97,6 @@ fun ScreenContent(modifier: Modifier) {
     )
     var pilihan by rememberSaveable { mutableStateOf(radioOptions[0]) }
 
-    var kategori by rememberSaveable { mutableIntStateOf(0) }
     var totalHarga by rememberSaveable { mutableFloatStateOf(0f) }
 
     val context = LocalContext.current
@@ -121,6 +119,7 @@ fun ScreenContent(modifier: Modifier) {
             onValueChange = { jumlah = it},
             label = { Text(text = stringResource(R.string.jumlah_orang)) },
             isError = jumlahError,
+            trailingIcon = { IconPicker(isError = jumlahError, unit = "")},
             supportingText = { ErrorHint(jumlahError) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(

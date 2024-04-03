@@ -34,7 +34,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -87,14 +86,14 @@ fun MainScreen(navController: NavHostController) {
 
 @Composable
 fun ScreenContent(modifier: Modifier) {
-    var jumlah by remember { mutableStateOf("") }
-    var jumlahError by remember { mutableStateOf(false) }
+    var jumlah by rememberSaveable { mutableStateOf("") }
+    var jumlahError by rememberSaveable { mutableStateOf(false) }
 
     val radioOptions = listOf(
         stringResource(id = R.string.uang),
         stringResource(id = R.string.beras)
     )
-    var pilihan by remember { mutableStateOf(radioOptions[0]) }
+    var pilihan by rememberSaveable { mutableStateOf(radioOptions[0]) }
 
     var kategori by rememberSaveable { mutableIntStateOf(0) }
     var totalHarga by rememberSaveable { mutableFloatStateOf(0f) }

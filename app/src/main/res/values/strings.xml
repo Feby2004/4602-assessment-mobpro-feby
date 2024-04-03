@@ -9,4 +9,5 @@
     <string name="input_invalid">Tidak boleh kosong.</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
     <string name="copyright">Zakat fitrah adalah sebuah aplikasi Android yang dirancang untuk membantu menghitung jumlah zakat yang harus dibayarkan, memastikan agar seseorang tidak lupa untuk membayar zakat selama bulan suci Ramadhan ini.\n\nAplikasi ini ditujukan bagi seluruh umat Muslim yang sedang menjalankan ibadah di bulan suci Ramadhan.\n\nCopyright @ 2024 Feby Irmayana.\nAll rights reserved.</string>
+    <string name="kembali">Kembali</string>
 </resources>

@@ -148,17 +148,32 @@ fun ScreenContent(modifier: Modifier) {
                 )
             }
         }
-        Button(
-            onClick = {
-                jumlahError = (jumlah == "" || jumlah == "0")
-                if (jumlahError ) return@Button
-
-                totalHarga = hitungZakat(jumlah.toFloat(), pilihan==radioOptions[0])
-            },
-            modifier = Modifier.padding(top = 8.dp),
-            contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+        Row (
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            Text(text = stringResource(R.string.hitung))
+            Button(
+                onClick = {
+                    jumlahError = (jumlah == "" || jumlah == "0")
+                    if (jumlahError) return@Button
+
+                    totalHarga = hitungZakat(jumlah.toFloat(), pilihan == radioOptions[0])
+                },
+                modifier = Modifier.padding(top = 8.dp),
+                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+            ) {
+                Text(text = stringResource(R.string.hitung))
+            }
+
+            Button(
+                onClick = {
+                    jumlah = ""
+                },
+                modifier = Modifier.padding(top = 8.dp),
+                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+            ) {
+                Text(text = stringResource(id = R.string.reset))
+            }
         }
 
         if (totalHarga !=0f) {

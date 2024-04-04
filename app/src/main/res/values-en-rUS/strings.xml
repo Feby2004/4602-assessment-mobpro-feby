@@ -14,4 +14,5 @@
     <string name="bagikan">Share</string>
     <string name="bagikan_uang_template">Amount of money to be paid: %1$s</string>
     <string name="bagikan_beras_template">Amount of rice to be paid: %1$s</string>
+    <string name="reset">Reset</string>
 </resources>

@@ -13,4 +13,5 @@
     <string name="bagikan">Bagikan</string>
     <string name="bagikan_uang_template">Jumlah uang yang harus dibayar: %1$s</string>
     <string name="bagikan_beras_template">Jumlah beras yang harus dibayar: %1$s</string>
+    <string name="reset">Reset</string>
 </resources>

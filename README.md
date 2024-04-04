@@ -1,1 +1,3 @@
-# 4602-assessment1-feby
+Nama: Feby Irmayana
+
+NIM: 6706220079

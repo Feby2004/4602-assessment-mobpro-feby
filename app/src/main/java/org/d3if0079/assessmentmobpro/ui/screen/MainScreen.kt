@@ -20,6 +20,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -63,8 +64,8 @@ fun MainScreen(navController: NavHostController) {
                     Text(text = stringResource(id = R.string.app_name))
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
+                    containerColor = Color(0xFF143D88),
+                    titleContentColor = Color(0xFFFFFFFF)
                 ),
                 actions = {
                     IconButton(
@@ -75,7 +76,7 @@ fun MainScreen(navController: NavHostController) {
                         Icon(
                             imageVector = Icons.Outlined.Info,
                             contentDescription = stringResource(R.string.tentang_aplikasi),
-                            tint = MaterialTheme.colorScheme.primary
+                            tint = Color(0xFFFFFFFF)
                         )
                     }
                 }
@@ -160,7 +161,8 @@ fun ScreenContent(modifier: Modifier) {
                     totalHarga = hitungZakat(jumlah.toFloat(), pilihan == radioOptions[0])
                 },
                 modifier = Modifier.padding(top = 8.dp),
-                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF303DBA))
             ) {
                 Text(text = stringResource(R.string.hitung))
             }
@@ -168,9 +170,11 @@ fun ScreenContent(modifier: Modifier) {
             Button(
                 onClick = {
                     jumlah = ""
+                    totalHarga = 0f
                 },
                 modifier = Modifier.padding(top = 8.dp),
-                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF303DBA))
             ) {
                 Text(text = stringResource(id = R.string.reset))
             }
@@ -192,7 +196,8 @@ fun ScreenContent(modifier: Modifier) {
                     shareData(context, message)
                 },
                 modifier = Modifier.padding(top = 8.dp),
-                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF303DBA))
             ) {
                 Text(text = stringResource(R.string.bagikan))
             }

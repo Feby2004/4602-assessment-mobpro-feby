@@ -39,7 +39,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if0079.assessmentmobpro.R
@@ -50,6 +50,8 @@ const val KEY_ID_DATAPASIEN = "idDataPasien"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(navController: NavHostController, id: Long? = null) {
+    val viewModel: DetailViewModel = viewModel()
+
     var nama by remember { mutableStateOf("") }
     var nik by remember { mutableStateOf("") }
     var umur by remember { mutableStateOf("") }
@@ -58,6 +60,18 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
     var jenisKunjungan by remember { mutableStateOf("") }
     var tanggalKunjungan by remember { mutableStateOf("") }
     var keluhan by remember { mutableStateOf("") }
+
+    if (id != null) {
+        val data = viewModel.getDataPasien(id)
+        nama = data?.nama ?: ""
+        nik = data?.nik ?: ""
+        umur = data?.umur ?: ""
+        alamat = data?.alamat ?: ""
+        jenisKelamin = data?.jenisKelamin ?: ""
+        jenisKunjungan = data?.jenisKunjungan ?: ""
+        tanggalKunjungan = data?.tanggalKunjungan ?: ""
+        keluhan = data?.keluhan ?: ""
+    }
 
     Scaffold (
         topBar = {

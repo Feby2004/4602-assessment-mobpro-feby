@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -69,36 +70,17 @@ fun ListItem(dataPasien: DataPasien) {
         Text(
             text = dataPasien.nama,
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis
+            overflow = TextOverflow.Ellipsis,
+            fontWeight = FontWeight.Bold
         )
         Text(
-            text = dataPasien.nik,
+            text = dataPasien.jenisKunjungan,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis
         )
         Text(
-            text = dataPasien.umur,
-            maxLines = 3,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(
-            text = dataPasien.alamat,
-            maxLines = 4,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(
-            text = dataPasien.jenisKelamin,
-            maxLines = 5,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(
-            text = dataPasien.jenisKunjungan,
-            maxLines = 6,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(
             text = dataPasien.tanggalKunjungan,
-            maxLines = 7,
+            maxLines = 3,
             overflow = TextOverflow.Ellipsis
         )
         Text(text = dataPasien.keluhan)

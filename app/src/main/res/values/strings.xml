@@ -5,4 +5,16 @@
     <string name="x_diklik">%1$s diklik!</string>
     <string name="tambah_data_pasien">Tambah data pasien</string>
     <string name="tambah_error">Belum bisa tambah data pasien.</string>
+    <string name="nama">Nama</string>
+    <string name="nik">Nik</string>
+    <string name="umur">Umur</string>
+    <string name="alamat">Alamat</string>
+    <string name="jenis_kelamin">Jenis kelamin</string>
+    <string name="jenis_kunjungan">Jenis kunjungan</string>
+    <string name="tanggal_kunjungan">Tanggal kunjungan</string>
+    <string name="keluhan">Keluhan</string>
+    <string name="pria">Pria</string>
+    <string name="wanita">Wanita</string>
+    <string name="umum">Umum</string>
+    <string name="bpjs">Bpjs</string>
 </resources>

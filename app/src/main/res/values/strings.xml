@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Pasien Cerdas</string>
+    <string name="list_kosong">Belum ada data</string>
+    <string name="data_image">Gambar data ketika belum ada data</string>
 </resources>

@@ -1,11 +1,15 @@
 package org.d3if0079.assessmentmobpro.ui.screen
 
 import android.content.res.Configuration
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Divider
@@ -15,8 +19,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -50,13 +57,34 @@ fun MainScreen() {
 @Composable
 fun ScreenContent(modifier: Modifier) {
     val viewModel: MainViewModel = viewModel()
-    val data = viewModel.data
-    LazyColumn (
-        modifier = modifier.fillMaxSize()
-    ){
-        items(data) {
-            ListItem(dataPasien = it)
-            Divider()
+    val data = emptyList<DataPasien>()
+    val context = LocalContext.current
+
+    if (data.isEmpty()) {
+        Column (
+            modifier = modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.gambar), 
+                contentDescription = stringResource(R.string.data_image),
+                modifier = Modifier.size(100.dp)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(text = stringResource(id = R.string.list_kosong))
+        }
+    }
+    else {
+        LazyColumn (
+            modifier = modifier.fillMaxSize()
+        ){
+            items(data) {
+                ListItem(dataPasien = it)
+                Divider()
+            }
         }
     }
 }
@@ -64,7 +92,9 @@ fun ScreenContent(modifier: Modifier) {
 @Composable
 fun ListItem(dataPasien: DataPasien) {
     Column (
-        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(

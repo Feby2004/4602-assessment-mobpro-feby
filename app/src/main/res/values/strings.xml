@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Pasien Cerdas</string>
-    <string name="list_kosong">Belum ada data</string>
-    <string name="data_image">Gambar data ketika belum ada data</string>
+    <string name="list_kosong">Belum ada data pasien</string>
+    <string name="data_image">Gambar data ketika belum ada data pasien</string>
     <string name="x_diklik">%1$s diklik!</string>
+    <string name="tambah_data_pasien">Tambah data pasien</string>
+    <string name="tambah_error">Belum bisa tambah data pasien.</string>
 </resources>

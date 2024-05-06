@@ -45,9 +45,11 @@ import androidx.navigation.compose.rememberNavController
 import org.d3if0079.assessmentmobpro.R
 import org.d3if0079.assessmentmobpro.ui.theme.AssessmentMobproTheme
 
+const val KEY_ID_DATAPASIEN = "idDataPasien"
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(navController: NavHostController) {
+fun DetailScreen(navController: NavHostController, id: Long? = null) {
     var nama by remember { mutableStateOf("") }
     var nik by remember { mutableStateOf("") }
     var umur by remember { mutableStateOf("") }
@@ -70,7 +72,10 @@ fun DetailScreen(navController: NavHostController) {
                     }
                 },
                 title = {
-                    Text(text = stringResource(id = R.string.tambah_data_pasien))
+                    if (id == null)
+                        Text(text = stringResource(id = R.string.tambah_data_pasien))
+                    else
+                        Text(text = stringResource(id = R.string.edit_data_pasien))
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = Color.Green,

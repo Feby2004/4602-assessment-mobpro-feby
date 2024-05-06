@@ -4,7 +4,6 @@
     <string name="data_image">Gambar data ketika belum ada data pasien</string>
     <string name="x_diklik">%1$s diklik!</string>
     <string name="tambah_data_pasien">Tambah data pasien</string>
-    <string name="tambah_error">Belum bisa tambah data pasien.</string>
     <string name="nama">Nama</string>
     <string name="nik">Nik</string>
     <string name="umur">Umur</string>
@@ -17,4 +16,6 @@
     <string name="wanita">Wanita</string>
     <string name="umum">Umum</string>
     <string name="bpjs">Bpjs</string>
+    <string name="kembali">Kembali</string>
+    <string name="simpan">Simpan</string>
 </resources>

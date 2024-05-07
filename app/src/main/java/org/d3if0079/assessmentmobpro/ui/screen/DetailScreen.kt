@@ -1,6 +1,7 @@
 package org.d3if0079.assessmentmobpro.ui.screen
 
 import android.content.res.Configuration
+import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,6 +33,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
@@ -43,14 +45,19 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if0079.assessmentmobpro.R
+import org.d3if0079.assessmentmobpro.database.DataPasienDb
 import org.d3if0079.assessmentmobpro.ui.theme.AssessmentMobproTheme
+import org.d3if0079.assessmentmobpro.util.ViewModelFactory
 
 const val KEY_ID_DATAPASIEN = "idDataPasien"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(navController: NavHostController, id: Long? = null) {
-    val viewModel: DetailViewModel = viewModel()
+    val context = LocalContext.current
+    val db = DataPasienDb.getInstance(context)
+    val factory = ViewModelFactory(db.dao)
+    val viewModel: DetailViewModel = viewModel(factory = factory)
 
     var nama by remember { mutableStateOf("") }
     var nik by remember { mutableStateOf("") }
@@ -96,7 +103,16 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                     titleContentColor = Color.Black,
                 ),
                 actions = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = {
+                        if (nama == "" || nik == "" || umur == "" || alamat == "" || jenisKelamin == "" || jenisKunjungan == "" || tanggalKunjungan == "" || keluhan == "") {
+                            Toast.makeText(context, R.string.invalid, Toast.LENGTH_LONG).show()
+                            return@IconButton
+                        }
+                        if (id == null) {
+                            viewModel.insert(nama, nik, umur, alamat, jenisKelamin, jenisKunjungan, tanggalKunjungan, keluhan)
+                        }
+                        navController.popBackStack()
+                    }) {
                         Icon(
                             imageVector = Icons.Outlined.Check,
                             contentDescription = stringResource(R.string.simpan),

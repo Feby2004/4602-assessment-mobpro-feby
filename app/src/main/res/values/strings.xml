@@ -19,4 +19,5 @@
     <string name="kembali">Kembali</string>
     <string name="simpan">Simpan</string>
     <string name="edit_data_pasien">Ubah data pasien</string>
+    <string name="invalid">Data pasien tidak boleh kosong.</string>
 </resources>

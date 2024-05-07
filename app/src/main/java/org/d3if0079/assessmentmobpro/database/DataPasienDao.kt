@@ -18,4 +18,5 @@ interface DataPasienDao {
 
     @Query("SELECT * FROM dataPasien ORDER BY tanggalKunjungan DESC")
     fun getDataPasien(): Flow<List<DataPasien>>
+
 }

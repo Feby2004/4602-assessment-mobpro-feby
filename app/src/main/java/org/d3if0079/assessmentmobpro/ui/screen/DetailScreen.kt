@@ -61,17 +61,17 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
     var tanggalKunjungan by remember { mutableStateOf("") }
     var keluhan by remember { mutableStateOf("") }
 
-    if (id != null) {
-        val data = viewModel.getDataPasien(id)
-        nama = data?.nama ?: ""
-        nik = data?.nik ?: ""
-        umur = data?.umur ?: ""
-        alamat = data?.alamat ?: ""
-        jenisKelamin = data?.jenisKelamin ?: ""
-        jenisKunjungan = data?.jenisKunjungan ?: ""
-        tanggalKunjungan = data?.tanggalKunjungan ?: ""
-        keluhan = data?.keluhan ?: ""
-    }
+//    if (id != null) {
+//        val data = viewModel.getDataPasien(id)
+//        nama = data?.nama ?: ""
+//        nik = data?.nik ?: ""
+//        umur = data?.umur ?: ""
+//        alamat = data?.alamat ?: ""
+//        jenisKelamin = data?.jenisKelamin ?: ""
+//        jenisKunjungan = data?.jenisKunjungan ?: ""
+//        tanggalKunjungan = data?.tanggalKunjungan ?: ""
+//        keluhan = data?.keluhan ?: ""
+//    }
 
     Scaffold (
         topBar = {

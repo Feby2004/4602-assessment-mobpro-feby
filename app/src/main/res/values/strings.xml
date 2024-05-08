@@ -22,4 +22,7 @@
     <string name="invalid">Data pasien tidak boleh kosong.</string>
     <string name="lainnya">Opsi lainnya</string>
     <string name="hapus">Hapus data pasien</string>
+    <string name="pesan_hapus">Hapus data pasien ini?</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
 </resources>

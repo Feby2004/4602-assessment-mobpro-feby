@@ -23,4 +23,7 @@ interface DataPasienDao {
     @Query("SELECT * FROM dataPasien WHERE id = :id")
     suspend fun getDataPasienById(id: Long): DataPasien?
 
+    @Query("DELETE FROM dataPasien WHERE id = :id")
+    suspend fun deleteById(id: Long)
+
 }

@@ -26,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -65,20 +66,21 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
     var alamat by remember { mutableStateOf("") }
     var jenisKelamin by remember { mutableStateOf("") }
     var jenisKunjungan by remember { mutableStateOf("") }
-    var tanggalKunjungan by remember { mutableStateOf("") }
+    var tanggalKunjungan by remember { mutableStateOf(viewModel.getFormatDate()) }
     var keluhan by remember { mutableStateOf("") }
 
-//    if (id != null) {
-//        val data = viewModel.getDataPasien(id)
-//        nama = data?.nama ?: ""
-//        nik = data?.nik ?: ""
-//        umur = data?.umur ?: ""
-//        alamat = data?.alamat ?: ""
-//        jenisKelamin = data?.jenisKelamin ?: ""
-//        jenisKunjungan = data?.jenisKunjungan ?: ""
-//        tanggalKunjungan = data?.tanggalKunjungan ?: ""
-//        keluhan = data?.keluhan ?: ""
-//    }
+    LaunchedEffect(true) {
+        if (id == null) return@LaunchedEffect
+        val data = viewModel.getDataPasien(id) ?: return@LaunchedEffect
+        nama = data.nama
+        nik = data.nik
+        umur = data.umur
+        alamat = data.alamat
+        jenisKelamin = data.jenisKelamin
+        jenisKunjungan = data.jenisKunjungan
+        tanggalKunjungan = data.tanggalKunjungan
+        keluhan = data.keluhan
+    }
 
     Scaffold (
         topBar = {
@@ -104,12 +106,14 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                 ),
                 actions = {
                     IconButton(onClick = {
-                        if (nama == "" || nik == "" || umur == "" || alamat == "" || jenisKelamin == "" || jenisKunjungan == "" || tanggalKunjungan == "" || keluhan == "") {
+                        if (nama == "" || nik == "" || umur == "" || alamat == "" || jenisKelamin == "" || jenisKunjungan == "" || keluhan == "") {
                             Toast.makeText(context, R.string.invalid, Toast.LENGTH_LONG).show()
                             return@IconButton
                         }
                         if (id == null) {
-                            viewModel.insert(nama, nik, umur, alamat, jenisKelamin, jenisKunjungan, tanggalKunjungan, keluhan)
+                            viewModel.insert(nama, nik, umur, alamat, jenisKelamin, jenisKunjungan, keluhan)
+                        } else {
+                            viewModel.update(id, nama, nik, umur, alamat, jenisKelamin, jenisKunjungan, keluhan)
                         }
                         navController.popBackStack()
                     }) {

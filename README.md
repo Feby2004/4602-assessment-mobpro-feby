@@ -1,2 +1,3 @@
-Nama: Feby Irmayana
-Nim: 6706220079
+#Nama: Feby Irmayana
+
+#Nim: 6706220079

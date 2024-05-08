@@ -95,7 +95,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.kembali),
-                            tint = MaterialTheme.colorScheme.primary
+                            tint = Color.Black
                         )
                     }
                 },
@@ -125,7 +125,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                         Icon(
                             imageVector = Icons.Outlined.Check,
                             contentDescription = stringResource(R.string.simpan),
-                            tint = MaterialTheme.colorScheme.primary
+                            tint = Color.Black
                         )
                     }
                     if (id != null) {

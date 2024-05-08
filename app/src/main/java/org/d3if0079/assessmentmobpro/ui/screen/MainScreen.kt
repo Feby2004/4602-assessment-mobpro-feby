@@ -3,6 +3,7 @@ package org.d3if0079.assessmentmobpro.ui.screen
 import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -90,7 +91,7 @@ fun MainScreen(navController: NavHostController) {
                                 if (showList) R.string.grid
                                 else R.string.list
                             ),
-                            tint = MaterialTheme.colorScheme.primary
+                            tint = Color.Black
                         )
                     }
                 }
@@ -100,12 +101,13 @@ fun MainScreen(navController: NavHostController) {
             FloatingActionButton(
                 onClick = {
                     navController.navigate(Screen.FormBaru.route)
-                }
+                },
+                    containerColor = Color.Green
             ) {
                 Icon(
                     imageVector = Icons.Filled.Add,
                     contentDescription = stringResource(R.string.tambah_data_pasien),
-                    tint = MaterialTheme.colorScheme.primary
+                    tint = Color.Black
                 )
             }
         }

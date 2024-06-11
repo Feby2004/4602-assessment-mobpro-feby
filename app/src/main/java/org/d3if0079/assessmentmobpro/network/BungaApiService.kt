@@ -26,4 +26,8 @@ object BungaApi {
     val service: BungaApiService by lazy {
         retrofit.create(BungaApiService::class.java)
     }
+
+    fun getBungaUrl(imageId: String): String {
+        return "$BASE_URL$imageId.jpg"
+    }
 }

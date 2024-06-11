@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import org.d3if0079.assessmentmobpro.R
 import org.d3if0079.assessmentmobpro.ui.theme.AssessmentMobproTheme
 
@@ -40,8 +41,12 @@ fun MainScreen() {
 
 @Composable
 fun ScreenContent(modifier: Modifier) {
+    val viewModel: MainViewModel = viewModel()
+
     Column (
-        modifier = modifier.fillMaxSize().padding(16.dp)
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp)
     ){
 
     }

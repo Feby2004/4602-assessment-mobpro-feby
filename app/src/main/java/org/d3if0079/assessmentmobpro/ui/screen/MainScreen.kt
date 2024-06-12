@@ -88,10 +88,12 @@ fun MainScreen() {
     val user by dataStore.userFlow.collectAsState(User())
 
     var showDialog by remember { mutableStateOf(false) }
+    var showBungaDialog by remember { mutableStateOf(false) }
 
     var bitmap: Bitmap? by remember { mutableStateOf(null) }
     val launcher = rememberLauncherForActivityResult(CropImageContract()) {
         bitmap = getCroppedImage(context.contentResolver, it)
+        if (bitmap !=null) showBungaDialog = true
     }
 
     Scaffold (
@@ -135,7 +137,7 @@ fun MainScreen() {
             }) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = stringResource(id = R.string.tambah_hewan)
+                    contentDescription = stringResource(id = R.string.tambah_bunga)
                 )
             }
         }
@@ -148,6 +150,15 @@ fun MainScreen() {
                 onDismissRequest = { showDialog = false }) {
                 CoroutineScope(Dispatchers.IO).launch { signOut(context, dataStore) }
                 showDialog = false
+            }
+        }
+
+        if (showBungaDialog) {
+            BungaDialog(
+                bitmap = bitmap,
+                onDismissRequest = { showBungaDialog = false }) { nama, namaLatin ->
+                Log.d("TAMBAH", "$nama $namaLatin ditambahkan.")
+                showBungaDialog = false
             }
         }
     }
@@ -171,7 +182,9 @@ fun ScreenContent(modifier: Modifier) {
 
         ApiStatus.SUCCESS -> {
             LazyVerticalGrid(
-                modifier = modifier.fillMaxSize().padding(4.dp),
+                modifier = modifier
+                    .fillMaxSize()
+                    .padding(4.dp),
                 columns = GridCells.Fixed(2),
                 contentPadding = PaddingValues(bottom = 80.dp)
             ) {

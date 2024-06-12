@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-private const val BASE_URL = "https://raw.githubusercontent.com/Feby2004/Bunga-Json/main/"
+private const val BASE_URL = "https://unspoken.my.id/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -18,7 +18,7 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 interface BungaApiService {
-    @GET("static-api.Json")
+    @GET("api_feby.php")
     suspend fun getBunga(): List<Bunga>
 }
 
@@ -28,7 +28,7 @@ object BungaApi {
     }
 
     fun getBungaUrl(imageId: String): String {
-        return "$BASE_URL$imageId.jpg"
+        return "${BASE_URL}image.php?id=$imageId"
     }
 }
 

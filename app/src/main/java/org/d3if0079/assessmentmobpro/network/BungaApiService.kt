@@ -8,11 +8,13 @@ import org.d3if0079.assessmentmobpro.model.Bunga
 import org.d3if0079.assessmentmobpro.model.OpStatus
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://unspoken.my.id/"
 
@@ -26,7 +28,9 @@ private val retrofit = Retrofit.Builder()
     .build()
 interface BungaApiService {
     @GET("api_feby.php")
-    suspend fun getBunga(): List<Bunga>
+    suspend fun getBunga(
+        @Header("Authorization") userId: String
+    ): List<Bunga>
 
     @Multipart
     @POST("api_feby.php")
@@ -35,6 +39,12 @@ interface BungaApiService {
         @Part("nama") nama: RequestBody,
         @Part("namaLatin") namaLatin: RequestBody,
         @Part image: MultipartBody.Part
+    ): OpStatus
+
+    @DELETE("api_feby.php")
+    suspend fun deleteBunga(
+        @Header("Authorization") userId: String,
+        @Query("id") id: String
     ): OpStatus
 }
 

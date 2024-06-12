@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Assessment Mobpro</string>
+    <string name="app_name">Galeri Bunga</string>
     <string name="gambar">Gambar %1$s</string>
     <string name="error">Gagal memuat data.. Koneksi error.</string>
     <string name="try_again">Coba lagi</string>
@@ -11,4 +11,5 @@
     <string name="nama_latin">Nama latin</string>
     <string name="batal">Batal</string>
     <string name="simpan">Simpan</string>
+    <string name="hapus">Hapus</string>
 </resources>

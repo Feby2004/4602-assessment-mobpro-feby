@@ -16,14 +16,18 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,6 +39,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -93,6 +98,9 @@ fun MainScreen() {
 
     var showDialog by remember { mutableStateOf(false) }
     var showBungaDialog by remember { mutableStateOf(false) }
+    var showDeleteDialog by remember{ mutableStateOf(false) }
+
+    var idBungaToDelete by remember { mutableStateOf<String?>(null) }
 
     var bitmap: Bitmap? by remember { mutableStateOf(null) }
     val launcher = rememberLauncherForActivityResult(CropImageContract()) {
@@ -138,7 +146,9 @@ fun MainScreen() {
                     )
                 )
                 launcher.launch(options)
-            }) {
+            },
+                containerColor = Color(0xFFFFE4E1)
+                ) {
                 Icon(
                     imageVector = Icons.Default.Add,
                     contentDescription = stringResource(id = R.string.tambah_bunga)
@@ -146,7 +156,15 @@ fun MainScreen() {
             }
         }
     ){ padding ->
-        ScreenContent(viewModel ,Modifier.padding(padding))
+        ScreenContent(
+            viewModel,
+            user.email,
+            Modifier.padding(padding),
+            onDeleteRequest = { id ->
+                idBungaToDelete = id
+                showDeleteDialog = true
+            }
+        )
 
         if (showDialog) {
             profilDialog(
@@ -165,6 +183,18 @@ fun MainScreen() {
                 showBungaDialog = false
             }
         }
+        if(showDeleteDialog && idBungaToDelete != null){
+            DeleteDialog(
+                userId = user.email,
+                id = idBungaToDelete!!,
+                onDismissRequest = { showDeleteDialog = false },
+                onConfirmation = {userId, id ->
+                    viewModel.deleteData(userId, id)
+                    showDeleteDialog = false
+                }
+            )
+
+        }
 
         if (errorMessage != null) {
             Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
@@ -174,9 +204,18 @@ fun MainScreen() {
 }
 
 @Composable
-fun ScreenContent(viewModel: MainViewModel, modifier: Modifier) {
+fun ScreenContent(
+    viewModel: MainViewModel,
+    userId: String,
+    modifier: Modifier,
+    onDeleteRequest: (String) -> Unit
+) {
     val data by viewModel.data
     val status by viewModel.status.collectAsState()
+
+    LaunchedEffect(userId) {
+        viewModel.retrieveData(userId)
+    }
 
     when (status) {
         ApiStatus.LOADING -> {
@@ -196,7 +235,7 @@ fun ScreenContent(viewModel: MainViewModel, modifier: Modifier) {
                 columns = GridCells.Fixed(2),
                 contentPadding = PaddingValues(bottom = 80.dp)
             ) {
-                items(data) { ListItem(bunga = it) }
+                items(data) { ListItem(bunga = it, onDeleteRequest) }
             }
         }
         
@@ -208,7 +247,7 @@ fun ScreenContent(viewModel: MainViewModel, modifier: Modifier) {
             ) {
                 Text(text = stringResource(id = R.string.error))
                 Button(
-                    onClick = { viewModel.retrieveData() },
+                    onClick = { viewModel.retrieveData(userId) },
                     modifier = Modifier.padding(top = 16.dp),
                     contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
                 ) {
@@ -220,7 +259,7 @@ fun ScreenContent(viewModel: MainViewModel, modifier: Modifier) {
 }
 
 @Composable
-fun ListItem(bunga: Bunga) {
+fun ListItem(bunga: Bunga, onDeleteRequest: (String) -> Unit) {
     Box(
         modifier = Modifier
             .padding(4.dp)
@@ -247,17 +286,32 @@ fun ListItem(bunga: Bunga) {
                 .background(Color(red = 0f, green = 0f, blue = 0f, alpha = 0.5f))
                 .padding(4.dp)
         ) {
-            Text(
-                text = bunga.nama,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
-            Text(
-                text = bunga.namaLatin,
-                fontStyle = FontStyle.Italic,
-                fontSize = 14.sp,
-                color = Color.White
-            )
+            Row {
+                Column(
+                    Modifier.width(100.dp)
+                ) {
+                    Text(
+                        text = bunga.nama,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                    Text(
+                        text = bunga.namaLatin,
+                        fontStyle = FontStyle.Italic,
+                        fontSize = 14.sp,
+                        color = Color.White
+                    )
+                }
+                Spacer(modifier = Modifier.width(20.dp))
+
+                IconButton(onClick = { onDeleteRequest(bunga.id) }) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = stringResource(R.string.hapus),
+                        tint = Color.White
+                    )
+                }
+            }
         }
     }
 }
